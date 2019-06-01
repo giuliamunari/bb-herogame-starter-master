@@ -1,21 +1,47 @@
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <title>Mocha Tests</title>
-    <link href="lib/mocha.css" rel="stylesheet" />
+  <meta charset="utf-8">
+  <title>Mocha Tests</title>
+  <link href="lib/mocha.css" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet" />
 </head>
+
 <body>
 
 
   <!-- 👍 YOUR HTML HERE 👍 -->
+  <header>
+    <h1>Game</h1>
+    <form id="changeName" onsubmit="displayStats(hero.health); return false">
+      <label for="newName">Add a new name</label>
+      <input type="text" id="newName" name="name" placeholder="name">
+      <button type="submit">
+        Submit
+      </button>
+    </form>
+  </header>
 
+  <main id="main">
 
+    <div id="displayStats"></div>
+    
+    <p>Click on the enemy to fight</p>
 
+    <img src="https://png.pngtree.com/element_origin_min_pic/16/10/24/51069df03ce243a70cfa58437943df56.jpg" id="inn"
+      alt="reset health" class="images">
+    <img src="https://pngimg.com/uploads/dagger/dagger_PNG27.png" id="dagger" alt="dagger" class="images">
+    <img src="https://i.pinimg.com/originals/98/db/f7/98dbf7eef6c49a96813d98997988c582.png" id="bag" alt="bag"
+      class="images">
+    <p id="status"></p>
+    <img src="https://www.nicepng.com/png/detail/204-2046310_2d-enemy-sprite.png" id="enemy" alt="enemy" class="enemy">
+
+  </main>
   <!-- I RECOMMEND YOU LEAVE THE REST UNTOUCHED -->
   <button onclick="mocha.checkLeaks(); mocha.run();">Run the tests!</button>
 
   <div id="mocha">
-  <!-- MOCHA TEST FEEDBACK WILL BE RENDERED HERE -->
+    <!-- MOCHA TEST FEEDBACK WILL BE RENDERED HERE -->
   </div>
 
   <script src="lib/chai.js"></script>
@@ -26,4 +52,5 @@
   <script src="lib/game_logic.test.js"></script>
 
 </body>
+
 </html>
