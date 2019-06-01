@@ -26,7 +26,6 @@ const potion = document.getElementById('inn')
 potion.onclick = () => {
     rest(hero)
     displayStats(hero.health)
-
 }
 // --------- PICKING UP ITEMS
 
@@ -46,23 +45,19 @@ daggerImg.onclick = () => {
 // this is the action of picking up the weapon
 function pickUpItem(currentHero, currentWeapon) {
     currentHero.inventory.push(currentWeapon)
-
 }
 
 // --------- EQUIP WEAPON
 const bag = document.getElementById('bag')
-bag.onclick = () => {
+    bag.onclick = () => {
     hero.weapon = hero.inventory[0]
-
+    displayStats(hero.health)
 }
 function equipWeapon(currentHero) {
     // check if there are items in the bag so we are sure there are default values
     if (currentHero.inventory[0] !== undefined) {
-
-        currentHero.inventory[0] = currentHero.weapon
-        return currentHero.inventory[0]
+        currentHero.weapon = currentHero.inventory[0]
     }
-
 }
 //------- implementing fighting an enemy
 const enemy = {
@@ -72,36 +67,28 @@ const enemy = {
 }
 const enemyImage = document.getElementById('enemy')
 
-// reduce hero health
-
 enemyImage.onclick = () => {
-
+    // reduce health during the fight
     hero.health -= enemy.damage
     enemy.health -= hero.weapon.damage
-
     displayStats(hero.health)
     displayEnemy(enemy.health)
     if (enemy.health === 0) {
-        //console.log('win')
         win()
     }
     if (hero.health <= 0) {
-        //console.log('died')
         gameOver()
     }
-
 }
-
+// interact wirh the form and update the status on the container
 function displayStats(health) {
     const containerStatus = document.getElementById('displayStats')
-    
     const inputField = document.getElementById('newName')
     // removes text from the input
     if (inputField.value) {
         hero.name = inputField.value
         inputField.value = ''
     }
-
     containerStatus.innerHTML =
     `Name: ${hero.name},
     <br>
@@ -112,12 +99,13 @@ function displayStats(health) {
     Damage: ${hero.weapon.damage},`
 }
 
+// display enemy status
 const status = document.getElementById('status')
 
 function displayEnemy(enemyHealth) {
     status.innerHTML = `Name: ${enemy.name}, Health: ${enemyHealth}`
 }
-
+// ---------- end of game styles
 function newImage(imgUrl, buttonReload) {
     const mainContainer = document.getElementById('main')
     //create an image
@@ -133,16 +121,14 @@ function newImage(imgUrl, buttonReload) {
     mainContainer.appendChild(button) 
     mainContainer.appendChild(imageEnd)
 }
-
+// if you are defeated
 function gameOver() {
-    console.log('died')
     const imageOver = 'https://cdn.weasyl.com/static/media/b3/a0/55/b3a055bf9382268a362d5d408a83268e55257be11b1f3216182c00cfddb5bb69.gif'
     const text = 'Try again'
     newImage(imageOver, text)
 }
-
+// if you win
 function win() {
-    console.log('win')
     const imgWin = 'https://media.giphy.com/media/l49JCSwMXyxHnYJws/giphy.gif'
     const text = 'Congratulations! start a new game'
     newImage(imgWin, text)
@@ -151,3 +137,4 @@ function win() {
 
 displayStats(hero.health)
 displayEnemy(enemy.health)
+equipWeapon(hero)
