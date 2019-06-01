@@ -44,16 +44,25 @@ daggerImg.onclick = () => {
 // this is the action of picking up the weapon
 function pickUpItem(currentHero, currentWeapon){ 
     currentHero.inventory.push(currentWeapon)
-    console.log(currentHero.inventory)
+    
+   
 }
 //console.log(hero.inventory);
 // --------- EQUIP WEAPON
+const bag = document.getElementById('bag')
+bag.onclick = () => {
+    hero.weapon = hero.inventory[0]
+    
+}
 function equipWeapon(currentHero){
-    currentHero.weapon.damage = 5
-    let current = currentHero.inventory[0]
-    if (current !== currentHero.weapon){
-        current = currentHero.weapon
+    // check if there are items in the bag so we are sure there are default values
+    if (currentHero.inventory[0] !== undefined){
+        
+        currentHero.inventory[0] = currentHero.weapon
+        return currentHero.inventory[0]
     }
     
 }
 //equipWeapon(hero)
+
+console.log(hero.inventory)
