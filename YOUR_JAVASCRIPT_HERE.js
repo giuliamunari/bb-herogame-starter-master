@@ -81,16 +81,13 @@ enemyImage.onclick = () => {
     
     displayStats(hero.health)
     displayEnemy(enemy.health)
-    if(enemy.health ===0){
-        /*
-        alert('you win!!!')
-        enemyImage.style.display = 'none'
-        */
+    if(enemy.health === 0){
+        //console.log('win')
+        win()
     }
-    if(hero.health<=0){
-        alert('you are dead')
-        containerStatus.innerHTML = `${heroName} died`
-        potion.style.display = 'none'
+    if(hero.health <= 0){
+        //console.log('died')
+        gameOver()
     }
     
 }
@@ -122,7 +119,38 @@ function displayEnemy(enemyHealth){
     status.innerHTML = `Name: ${enemy.name}, Health: ${enemyHealth}`
     
 }
-
+function newImage(imgUrl, buttonReload){
+    const mainContainer = document.getElementById('main')
+    //create an image
+    const imageEnd = document.createElement('img')
+    mainContainer.innerHTML = ''
+    
+    imageEnd.src = imgUrl
+    // create a button
+    const button = document.createElement('button')
+    button.classList.add('buttonRestart')
+    button.onclick = () => {
+        location.reload()
+    } 
+    button.innerHTML = buttonReload
+    mainContainer.appendChild(button)
+    mainContainer.appendChild(imageEnd)
+    
+    
+}
+function gameOver(){
+    console.log('died')
+   const imageOver = 'https://cdn.weasyl.com/static/media/b3/a0/55/b3a055bf9382268a362d5d408a83268e55257be11b1f3216182c00cfddb5bb69.gif'
+    const text = 'Try again'
+   newImage(imageOver, text)
+}
+function win(){
+    console.log('win')
+    const imgWin = 'https://media.giphy.com/media/l49JCSwMXyxHnYJws/giphy.gif'
+    const text = 'Congratulations! start a new game'
+    newImage(imgWin, text)
+    
+}
 
 displayStats(healthOfHero)
 displayEnemy(enemy.health)
