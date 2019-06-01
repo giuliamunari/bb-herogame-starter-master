@@ -1,0 +1,8 @@
+/* custom css */
+.images{
+    width: 200px;
+    max-height: 200px
+}
+.enemy{
+    display: block; max-width: 90%;
+}

@@ -1,6 +1,6 @@
 // Write your JS here
 const hero = {
-    name: 'my hero',
+    name: 'Clio',
     heroic: true,
     inventory: [],
     health: 10,
@@ -10,7 +10,7 @@ const hero = {
     }
 }
 // --------- RESTING
-
+let healthOfHero = hero.health
 // rest the hero
 function rest(object){
     if (object.health ===10){
@@ -25,6 +25,8 @@ const potion = document.getElementById('inn')
 
 potion.onclick = () => {
     rest(hero)
+    displayStats(healthOfHero)
+   
 }
 // --------- PICKING UP ITEMS
 
@@ -45,9 +47,8 @@ daggerImg.onclick = () => {
 function pickUpItem(currentHero, currentWeapon){ 
     currentHero.inventory.push(currentWeapon)
     
-   
 }
-//console.log(hero.inventory);
+
 // --------- EQUIP WEAPON
 const bag = document.getElementById('bag')
 bag.onclick = () => {
@@ -63,6 +64,65 @@ function equipWeapon(currentHero){
     }
     
 }
-//equipWeapon(hero)
+//------- implementing fighting an enemy
+const enemy = {
+    name: 'Dangerous Enemy',
+    health: 10,
+    damage: 3
+}
+const enemyImage = document.getElementById('enemy')
 
-console.log(hero.inventory)
+// reduce hero health
+
+enemyImage.onclick = () => {
+    
+    hero.health -= enemy.damage
+    enemy.health -= hero.weapon.damage
+    
+    displayStats(hero.health)
+    displayEnemy(enemy.health)
+    if(enemy.health ===0){
+        /*
+        alert('you win!!!')
+        enemyImage.style.display = 'none'
+        */
+    }
+    if(hero.health<=0){
+        alert('you are dead')
+        containerStatus.innerHTML = `${heroName} died`
+        potion.style.display = 'none'
+    }
+    
+}
+
+function displayStats(health){
+    const containerStatus = document.getElementById('displayStats')
+    let heroName = hero.name
+    const inputField = document.getElementById('newName')
+    if (inputField.value){
+        heroName = inputField.value
+        inputField.value = ''
+    }
+    containerStatus.innerHTML = 
+    `Name: ${heroName},
+    <br>
+    Health: ${health},
+    <br>
+    Weapon: ${hero.weapon.type},
+    <br>
+    Damage: ${hero.weapon.damage},`
+    
+  
+   
+}
+
+const status = document.getElementById('status')
+function displayEnemy(enemyHealth){
+    
+    status.innerHTML = `Name: ${enemy.name}, Health: ${enemyHealth}`
+    
+}
+
+
+displayStats(healthOfHero)
+displayEnemy(enemy.health)
