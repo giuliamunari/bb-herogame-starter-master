@@ -13,20 +13,20 @@
   <!-- 👍 YOUR HTML HERE 👍 -->
   <header>
     <h1>Game</h1>
-
-  </header>
-
-  <main id="main">
-    <div id="displayStats">
-
-    </div>
-    <form id="changeName" onsubmit="displayStats(healthOfHero); return false">
+    <form id="changeName" onsubmit="displayStats(hero.health); return false">
       <label for="newName">Add a new name</label>
       <input type="text" id="newName" name="name" placeholder="name">
       <button type="submit">
         Submit
       </button>
     </form>
+  </header>
+
+  <main id="main">
+    <div id="displayStats">
+
+    </div>
+    
     <p>Click on the enemy to fight</p>
     <img src="https://png.pngtree.com/element_origin_min_pic/16/10/24/51069df03ce243a70cfa58437943df56.jpg" id="inn"
       alt="reset health" class="images">
