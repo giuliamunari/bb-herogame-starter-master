@@ -9,14 +9,20 @@ const hero = {
         damage: 2
     }
 }
+const potion = document.getElementById('inn')
+
+potion.onclick = () => {
+    hero.health = 10
+}
 function rest(object){
     if (object.health ===10){
         alert('You are already healthy')
     }
     object.health = 10
-    return object;
+    return object
 }
-function pickUpItem(){
+function pickUpItem(currentHero, currentWeapon){
+    currentHero.inventory.push(currentWeapon)
 
 }
 function equipWeapon(){
